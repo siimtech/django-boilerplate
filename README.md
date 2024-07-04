@@ -29,3 +29,17 @@ This boilerplate project is designed to kickstart development of web application
 ```bash
 git clone https://github.com/siimtech/django-boilerplate.git
 cd django-boilerplate
+```
+
+2. Create a virtual environment:
+
+```bash
+virtualenv venv
+source venv/bin/activate
+```
+
+3. Install Pre-installed packages:
+
+```bash
+pip install -r requirements.txt
+```
