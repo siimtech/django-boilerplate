@@ -7,7 +7,9 @@ This boilerplate project is designed to kickstart development of web application
 - **Django 5.0.3**: A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 - **AWS S3**: For storing static and media files.
 - **AWS EC2**: For hosting the application.
+- **AWS Cloudwatch Logs**: For monitoring and logging application and infrastructure performance.
 - **AWS Lambda**: For running serverless computing functions.
+- **AWS IAM**: For managing access to AWS services and resources securely.
 - **.env**: For managing environment variables securely.
 - **uWSGI**: As the application server, interfacing with Nginx.
 - **Nginx**: Serving as a reverse proxy to uWSGI, handling HTTP requests.
@@ -43,3 +45,21 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+### Running the Project
+
+1. Apply database migrations:
+
+```bash
+python manage.py migrate
+```
+
+2. Run the development server:
+
+```bash
+python manage.py runserver
+```
+
+3. Access the application:
+    - Open a web browser and navigate to http://127.0.0.1:8000/.
+
