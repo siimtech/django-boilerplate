@@ -5,7 +5,6 @@ from watchtower import WatchtowerWarning
 
 api = NinjaAPI()
 
-# Get a logger specific to this module
 logger = logging.getLogger('django_app')
 
 @api.get("/event-handler")
