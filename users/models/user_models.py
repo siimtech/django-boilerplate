@@ -47,6 +47,8 @@ class AppUser(AbstractBaseUser):
 
     objects = AppUserManager()
 
+    USERNAME_FIELD = 'username'
+
     class Meta:
         db_table = 'user'
         verbose_name = "사용자"
