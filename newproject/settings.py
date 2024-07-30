@@ -354,27 +354,23 @@ UNFOLD = {
                         "title": _("관리자"),
                         "icon": "shield_person", # Supported icon set: https://fonts.google.com/icons
                         "link": reverse_lazy("admin:users_admin_changelist"),
-                        # "badge": "sample_app.badge_callback",
-                        # "permission": lambda request: request.user.is_superuser,
+                        "permission": "newproject.views.admin_permission_callback",
                     },
                     {
                         "title": _("사용자"),
                         "icon": "person",
                         "link": reverse_lazy("admin:users_appuser_changelist"),
-                        "badge": "2",
-                        # "permission": lambda request: request.user.is_superuser,
+                        "badge": "newproject.views.user_badge_callback",
                     },
                     {
                         "title": _("소셜 계정"),
                         "icon": "groups_3",
                         "link": reverse_lazy("admin:users_socialaccount_changelist"),
-                        # "permission": lambda request: request.user.is_superuser,
                     },
                     {
                         "title": _("그룹"),
                         "icon": "group",
                         "link": reverse_lazy("admin:auth_group_changelist"),
-                        # "permission": "newproject.permission_callback",
                     },
                 ]
         #         "title": _("Navigation"),
