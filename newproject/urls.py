@@ -24,14 +24,19 @@ from api.views import api
 from rest_framework import routers, permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 router = routers.DefaultRouter()
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="API Documentation",
+        title="Django API Documentation",
         default_version='v1',
-        description="Test description",
+        description="Swagger description",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@local.local"),
         license=openapi.License(name="BSD License"),
@@ -48,6 +53,8 @@ urlpatterns = [
     path('index/', index),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', api.urls),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

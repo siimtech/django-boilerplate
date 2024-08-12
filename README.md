@@ -5,6 +5,9 @@ This boilerplate project is designed to kickstart development of web application
 ## Features
 
 - **Django 5.0.3**: A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+- **Django Ninja**: For building fast APIs with Django and Python 3.6+ type hints.
+- **Django SimpleJWT**: Provides JSON Web Token (JWT) authentication for Django.
+- **Django Swagger**: For generating interactive API documentation.
 - **AWS S3**: For storing static and media files.
 - **AWS EC2**: For hosting the application.
 - **AWS Cloudwatch Logs**: For monitoring and logging application and infrastructure performance.
@@ -62,4 +65,21 @@ python manage.py runserver
 
 3. Access the application:
     - Open a web browser and navigate to http://127.0.0.1:8000/.
+
+
+### Api Docs
+Django Swagger and Ninja provide interactive API documentation. Access it at:
+
+- Django Swagger
+```bash
+http://your-domain/swagger/
+```
+
+- Django Ninja
+```bash
+http://your-domain/api/docs/
+```
+
+### Contributing
+Contributions are welcome! Please submit a pull request or open an issue for any improvements or bug fixes.
 

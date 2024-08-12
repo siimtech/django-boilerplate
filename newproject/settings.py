@@ -20,6 +20,8 @@ import boto3
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from datetime import timedelta
 
 
 # Load environment variables from .env file
@@ -70,12 +72,31 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
+}
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,  
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'JTI_CLAIM': 'jti',
 }
 
 SITE_ID = 1
@@ -251,6 +272,9 @@ cloudwatch_logs_client = boto3.client(
     region_name=AWS_DEFAULT_REGION
 )
 
+def get_stream_name():
+    return timezone.now().date().strftime("%Y/%m/%d")
+
 cloudwatch_handler = watchtower.CloudWatchLogHandler(
     log_group="django-boilerplate",  
     stream_name="20240706",  
@@ -268,6 +292,7 @@ LOGGING = {
         'cloudwatch': {
             'level': 'DEBUG',
             'class': 'watchtower.CloudWatchLogHandler',
+            'log_group': "django-boilerplate", 
         },
     },
     'loggers': {
