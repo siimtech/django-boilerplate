@@ -82,7 +82,7 @@ def dashboard_callback(request: HttpRequest, context) -> Dict:
                         [1, 9], [1, 21], [1, 11], [1, 14], [1, 8], [1, 15], [1, 16], 
                         [1, 18], [1, 14], [1, 10], [1, 9], [1, 20], [1, 10]
                     ],
-                    "borderColor": "#9333ea"
+                    "borderColor": "rgba(147, 51, 234, 0.7)"
                 }
             ]
         }),
