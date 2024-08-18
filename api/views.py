@@ -17,7 +17,7 @@ def protected_endpoint(request):
     return {"message": "Hello, world!"}
 
 @api.get("/event-handler")
-def hello4(request):
+def event_handler(request):
     try:
         logger.info("This might be too late in the application lifecycle.")
     except WatchtowerWarning as e:
