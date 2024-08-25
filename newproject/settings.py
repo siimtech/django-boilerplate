@@ -64,11 +64,14 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'ninja',
-    'api',
     'storages',
-    'newproject',
-    'users',
 ]
+
+main_dir = BASE_DIR  # Replace 'main_directory_name' with the actual name of your main directory
+for directory in os.listdir(main_dir):
+    dir_path = os.path.join(main_dir, directory)
+    if os.path.isdir(dir_path) and directory not in ['static', 'templates', '.git', 'venv', 'utils']:
+        INSTALLED_APPS.append(directory)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
