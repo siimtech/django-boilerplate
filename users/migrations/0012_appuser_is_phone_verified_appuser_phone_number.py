@@ -6,18 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0011_alter_appuser_password'),
+        ("users", "0011_alter_appuser_password"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='appuser',
-            name='is_phone_verified',
-            field=models.BooleanField(default=False, verbose_name='휴대폰 인증 여부'),
+            model_name="appuser",
+            name="is_phone_verified",
+            field=models.BooleanField(default=False, verbose_name="휴대폰 인증 여부"),
         ),
         migrations.AddField(
-            model_name='appuser',
-            name='phone_number',
-            field=models.CharField(blank=True, max_length=20, null=True, verbose_name='휴대폰 번호'),
+            model_name="appuser",
+            name="phone_number",
+            field=models.CharField(
+                blank=True, max_length=20, null=True, verbose_name="휴대폰 번호"
+            ),
         ),
     ]

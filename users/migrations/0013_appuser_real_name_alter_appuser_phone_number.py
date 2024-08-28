@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0012_appuser_is_phone_verified_appuser_phone_number'),
+        ("users", "0012_appuser_is_phone_verified_appuser_phone_number"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='appuser',
-            name='real_name',
-            field=models.CharField(blank=True, default=None, max_length=50, null=True, verbose_name='실명'),
+            model_name="appuser",
+            name="real_name",
+            field=models.CharField(
+                blank=True, default=None, max_length=50, null=True, verbose_name="실명"
+            ),
         ),
         migrations.AlterField(
-            model_name='appuser',
-            name='phone_number',
-            field=models.CharField(blank=True, max_length=20, unique=True, verbose_name='휴대폰 번호'),
+            model_name="appuser",
+            name="phone_number",
+            field=models.CharField(
+                blank=True, max_length=20, unique=True, verbose_name="휴대폰 번호"
+            ),
         ),
     ]

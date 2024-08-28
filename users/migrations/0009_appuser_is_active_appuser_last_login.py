@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0008_appuser_password_alter_appuser_email_and_more'),
+        ("users", "0008_appuser_password_alter_appuser_email_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='appuser',
-            name='is_active',
+            model_name="appuser",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='appuser',
-            name='last_login',
+            model_name="appuser",
+            name="last_login",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

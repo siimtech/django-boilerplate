@@ -6,34 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_socialaccount'),
+        ("users", "0004_socialaccount"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='socialaccount',
-            options={'verbose_name': '소셜계정', 'verbose_name_plural': '소셜계정'},
+            name="socialaccount",
+            options={"verbose_name": "소셜계정", "verbose_name_plural": "소셜계정"},
         ),
         migrations.RemoveField(
-            model_name='socialaccount',
-            name='google_id',
+            model_name="socialaccount",
+            name="google_id",
         ),
         migrations.RemoveField(
-            model_name='socialaccount',
-            name='kakao_id',
+            model_name="socialaccount",
+            name="kakao_id",
         ),
         migrations.RemoveField(
-            model_name='socialaccount',
-            name='naver_id',
+            model_name="socialaccount",
+            name="naver_id",
         ),
         migrations.AddField(
-            model_name='socialaccount',
-            name='provider',
-            field=models.CharField(choices=[('kakao', '카카오'), ('naver', '네이버'), ('apple', '애플')], default=None, max_length=10, null=True),
+            model_name="socialaccount",
+            name="provider",
+            field=models.CharField(
+                choices=[("kakao", "카카오"), ("naver", "네이버"), ("apple", "애플")],
+                default=None,
+                max_length=10,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='socialaccount',
-            name='uid',
-            field=models.CharField(default='', max_length=255, unique=True),
+            model_name="socialaccount",
+            name="uid",
+            field=models.CharField(default="", max_length=255, unique=True),
         ),
     ]

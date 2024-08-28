@@ -6,23 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0007_alter_appuser_profile_image'),
+        ("users", "0007_alter_appuser_profile_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='appuser',
-            name='password',
-            field=models.CharField(blank=True, max_length=128, null=True, verbose_name='비밀번호'),
+            model_name="appuser",
+            name="password",
+            field=models.CharField(
+                blank=True, max_length=128, null=True, verbose_name="비밀번호"
+            ),
         ),
         migrations.AlterField(
-            model_name='appuser',
-            name='email',
-            field=models.EmailField(blank=True, max_length=254, null=True, unique=True, verbose_name='이메일'),
+            model_name="appuser",
+            name="email",
+            field=models.EmailField(
+                blank=True,
+                max_length=254,
+                null=True,
+                unique=True,
+                verbose_name="이메일",
+            ),
         ),
         migrations.AlterField(
-            model_name='appuser',
-            name='username',
-            field=models.CharField(max_length=50, unique=True, verbose_name='유저네임'),
+            model_name="appuser",
+            name="username",
+            field=models.CharField(max_length=50, unique=True, verbose_name="유저네임"),
         ),
     ]
