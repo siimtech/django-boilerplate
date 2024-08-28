@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0010_appuser_registered_at_alter_appuser_is_active_and_more'),
+        ("users", "0010_appuser_registered_at_alter_appuser_is_active_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='appuser',
-            name='password',
-            field=models.CharField(max_length=128, verbose_name='비밀번호'),
+            model_name="appuser",
+            name="password",
+            field=models.CharField(max_length=128, verbose_name="비밀번호"),
         ),
     ]

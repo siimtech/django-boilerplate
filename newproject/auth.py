@@ -1,7 +1,7 @@
-
 from ninja.security import HttpBearer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+
 
 class JwtAuth(HttpBearer):
     def authenticate(self, request, token):

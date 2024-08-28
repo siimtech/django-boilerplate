@@ -26,24 +26,22 @@ from .unfold import unfold_settings
 
 
 # Load environment variables from .env file
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+env = environ.Env(DEBUG=(bool, False))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env_file = os.path.join(BASE_DIR, '.env')
+env_file = os.path.join(BASE_DIR, ".env")
 
 if os.path.exists(env_file):
     environ.Env.read_env(env_file)
 else:
     print(f"{env_file} does not exist")
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG_MODE')
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env.bool("DEBUG_MODE")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 # Application definition
 
@@ -56,51 +54,57 @@ INSTALLED_APPS = [
     "unfold.contrib.guardian",  # optional, if django-guardian package is used
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "django.contrib.admin",  # required
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'drf_yasg',
-    'corsheaders',
-    'ninja',
-    'storages',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_yasg",
+    "corsheaders",
+    "ninja",
+    "storages",
 ]
 
 main_dir = BASE_DIR  # Replace 'main_directory_name' with the actual name of your main directory
 for directory in os.listdir(main_dir):
     dir_path = os.path.join(main_dir, directory)
-    if os.path.isdir(dir_path) and directory not in ['static', 'templates', '.git', 'venv', 'utils']:
+    if os.path.isdir(dir_path) and directory not in [
+        "static",
+        "templates",
+        ".git",
+        "venv",
+        "utils",
+    ]:
         INSTALLED_APPS.append(directory)
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    "DEFAULT_AUTHENTICATION_CLASSES": (
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
+    "DEFAULT_PERMISSION_CLASSES": (
         # 'rest_framework.permissions.AllowAny',
-        'rest_framework.permissions.IsAuthenticated',
+        "rest_framework.permissions.IsAuthenticated",
     ),
 }
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,  
-    'VERIFYING_KEY': None,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-    'JTI_CLAIM': 'jti',
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=10),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "JTI_CLAIM": "jti",
 }
 
 SITE_ID = 1
@@ -110,15 +114,15 @@ SITE_ID = 1
 # ACCOUNT_USERNAME_REQUIRED = False
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'newproject.middleware.RequestMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "newproject.middleware.RequestMiddleware",
 ]
 
 # CORS 설정
@@ -130,51 +134,44 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
+    "content-type",
+    "authorization",
 ]
 
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS'
-]
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 
 CORS_ALLOW_CREDENTIALS = True
 
-ROOT_URLCONF = 'newproject.urls'
+ROOT_URLCONF = "newproject.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'newproject.wsgi.application'
+WSGI_APPLICATION = "newproject.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-AUTH_USER_MODEL = 'users.Admin'
+AUTH_USER_MODEL = "users.Admin"
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -184,16 +181,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -201,11 +198,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'ko'
+LANGUAGE_CODE = "ko"
 
 USE_TZ = True
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
@@ -215,11 +212,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/ 'static/'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static/"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/ 'media/'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -238,14 +235,14 @@ MEDIA_ROOT = BASE_DIR/ 'media/'
 #     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 # }
 
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 # AWS_DEFAULT_ACL = 'public-read'
-AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
-AWS_S3_SIGNATURE_VERSION = env('AWS_S3_SIGNATURE_VERSION')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+AWS_S3_SIGNATURE_VERSION = env("AWS_S3_SIGNATURE_VERSION")
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_FILE_OVERWRITE = False
 
 # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
@@ -258,58 +255,59 @@ STORAGES = {
     },
     "staticfiles": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    }
+    },
 }
 
 # AWS CLOUDWATCH LOGGING
 
-CLOUDWATCH_AWS_ID = env('AWS_ACCESS_KEY_ID')
-CLOUDWATCH_AWS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_DEFAULT_REGION = env('AWS_S3_REGION_NAME')
+CLOUDWATCH_AWS_ID = env("AWS_ACCESS_KEY_ID")
+CLOUDWATCH_AWS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_DEFAULT_REGION = env("AWS_S3_REGION_NAME")
 
-s3_client = boto3.client('s3')
+s3_client = boto3.client("s3")
 
 cloudwatch_logs_client = boto3.client(
-    'logs',
+    "logs",
     aws_access_key_id=CLOUDWATCH_AWS_ID,
     aws_secret_access_key=CLOUDWATCH_AWS_KEY,
-    region_name=AWS_DEFAULT_REGION
+    region_name=AWS_DEFAULT_REGION,
 )
+
 
 def get_stream_name():
     return timezone.now().date().strftime("%Y/%m/%d")
 
+
 cloudwatch_handler = watchtower.CloudWatchLogHandler(
-    log_group="django-boilerplate",  
-    stream_name="20240706",  
-    boto3_client=cloudwatch_logs_client
+    log_group="django-boilerplate",
+    stream_name="20240706",
+    boto3_client=cloudwatch_logs_client,
 )
 
-logger = logging.getLogger('django_app')
+logger = logging.getLogger("django_app")
 logger.addHandler(cloudwatch_handler)
-logger.setLevel(logging.DEBUG) 
+logger.setLevel(logging.DEBUG)
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'cloudwatch': {
-            'level': 'DEBUG',
-            'class': 'watchtower.CloudWatchLogHandler',
-            'log_group': "django-boilerplate", 
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "cloudwatch": {
+            "level": "DEBUG",
+            "class": "watchtower.CloudWatchLogHandler",
+            "log_group": "django-boilerplate",
         },
     },
-    'loggers': {
-        'django_app': {
-            'handlers': ['cloudwatch'],
-            'level': 'DEBUG',
-            'propagate': True,
+    "loggers": {
+        "django_app": {
+            "handlers": ["cloudwatch"],
+            "level": "DEBUG",
+            "propagate": True,
         },
     },
 }
 
 UNFOLD = unfold_settings
-
 
 
 # def dashboard_callback(request, context):
@@ -324,16 +322,18 @@ UNFOLD = unfold_settings
 #     )
 #     return context
 
+
 def environment_callback(request):
     """
     Callback has to return a list of two values represeting text value and the color
     type of the label displayed in top right corner.
     """
-    return ["Production", "danger", "info", "danger", "warning", "success"] # 
+    return ["Production", "danger", "info", "danger", "warning", "success"]  #
 
 
 def badge_callback(request):
     return 3
+
 
 def permission_callback(request):
     return request.user.has_perm("newproject.change_model")

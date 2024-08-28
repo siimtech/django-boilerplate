@@ -7,14 +7,16 @@ from django.contrib.auth.decorators import login_required
 
 api = NinjaAPI()
 
-logger = logging.getLogger('django_app')
+logger = logging.getLogger("django_app")
 
 jwt_auth_instance = JwtAuth()
+
 
 @api.get("/hello", auth=jwt_auth_instance, response=dict)
 def protected_endpoint(request):
     print(request.auth)
     return {"message": "Hello, world!"}
+
 
 @api.get("/event-handler")
 def event_handler(request):
@@ -23,5 +25,5 @@ def event_handler(request):
     except WatchtowerWarning as e:
         warnings.warn("Attempted to log after shutdown: " + str(e))
 
-    logger.debug('Debug message after CloudWatch logging attempt')
+    logger.debug("Debug message after CloudWatch logging attempt")
     return {"message": "Hello world2"}

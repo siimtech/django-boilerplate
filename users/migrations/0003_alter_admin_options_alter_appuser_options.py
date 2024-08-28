@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_appuser_alter_admin_managers_alter_admin_email'),
+        ("users", "0002_appuser_alter_admin_managers_alter_admin_email"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='admin',
-            options={'verbose_name': '관리자', 'verbose_name_plural': '관리자'},
+            name="admin",
+            options={"verbose_name": "관리자", "verbose_name_plural": "관리자"},
         ),
         migrations.AlterModelOptions(
-            name='appuser',
-            options={'verbose_name': '사용자', 'verbose_name_plural': '사용자'},
+            name="appuser",
+            options={"verbose_name": "사용자", "verbose_name_plural": "사용자"},
         ),
     ]

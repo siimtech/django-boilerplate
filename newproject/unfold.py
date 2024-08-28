@@ -25,8 +25,8 @@ unfold_settings = {
             "href": lambda request: static("favicon.svg"),
         },
     ],
-    "SHOW_HISTORY": True, # show/hide "History" button, default: True
-    "SHOW_VIEW_ON_SITE": True, # show/hide "View on site" button, default: True
+    "SHOW_HISTORY": True,  # show/hide "History" button, default: True
+    "SHOW_VIEW_ON_SITE": True,  # show/hide "View on site" button, default: True
     # "ENVIRONMENT": ["Production", "danger", "info", "danger", "warning", "success"],
     "DASHBOARD_CALLBACK": "newproject.views.dashboard_callback",
     # "THEME": "dark", # Force theme: "dark" or "light". Will disable theme switcher
@@ -75,7 +75,7 @@ unfold_settings = {
                 "items": [
                     {
                         "title": _("관리자"),
-                        "icon": "shield_person", # Supported icon set: https://fonts.google.com/icons
+                        "icon": "shield_person",  # Supported icon set: https://fonts.google.com/icons
                         "link": reverse_lazy("admin:users_admin_changelist"),
                         "permission": "newproject.views.admin_permission_callback",
                     },
@@ -95,25 +95,25 @@ unfold_settings = {
                         "icon": "group",
                         "link": reverse_lazy("admin:auth_group_changelist"),
                     },
-                ]
+                ],
             },
-        #         "title": _("Navigation"),
-        #         "separator": True,  # Top border
-        #         "collapsible": True,  # Collapsible group of links
-        #         "items": [
-        #             {
-        #                 "title": _("Dashboard"),
-        # #                 "icon": "dashboard",  # Supported icon set: https://fonts.google.com/icons
-        #                 "link": reverse_lazy("admin:index"),
-        # #                 # "badge": "sample_app.badge_callback",
-        # #                 # "permission": lambda request: request.user.is_superuser,
-        #             },
-        # #             {
-        # #                 "title": _("Users"),
-        # #                 "icon": "people",
-        # #                 # "link": reverse_lazy("admin:users_user_changelist"),
-        # #             },
-        #         ],
+            #         "title": _("Navigation"),
+            #         "separator": True,  # Top border
+            #         "collapsible": True,  # Collapsible group of links
+            #         "items": [
+            #             {
+            #                 "title": _("Dashboard"),
+            # #                 "icon": "dashboard",  # Supported icon set: https://fonts.google.com/icons
+            #                 "link": reverse_lazy("admin:index"),
+            # #                 # "badge": "sample_app.badge_callback",
+            # #                 # "permission": lambda request: request.user.is_superuser,
+            #             },
+            # #             {
+            # #                 "title": _("Users"),
+            # #                 "icon": "people",
+            # #                 # "link": reverse_lazy("admin:users_user_changelist"),
+            # #             },
+            #         ],
         ],
     },
     # "TABS": [
