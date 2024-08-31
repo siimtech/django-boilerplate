@@ -23,6 +23,8 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from datetime import timedelta
 from .unfold import unfold_settings
+from .storages import StaticStorage, MediaStorage  # Adjust the import path as necessary
+from django.utils.functional import lazy
 
 
 # Load environment variables from .env file
@@ -212,11 +214,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "static/"
+# STATIC_URL = "/static/"
+# STATIC_ROOT = BASE_DIR / "static/"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media/"
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR / "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -251,12 +253,15 @@ AWS_S3_FILE_OVERWRITE = False
 
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "newproject.storages.MediaStorage",
     },
     "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "newproject.storages.StaticStorage",
     },
 }
+
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 # AWS CLOUDWATCH LOGGING
 
