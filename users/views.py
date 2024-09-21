@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import AppUser
 from .serializers import AppUserSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 
 class AppUsersViewSet(ModelViewSet):
@@ -27,6 +29,8 @@ class AppUsersViewSet(ModelViewSet):
         except AppUser.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 @api_view(["POST"])
 def register(request):
