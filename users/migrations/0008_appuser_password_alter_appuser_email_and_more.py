@@ -13,9 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="appuser",
             name="password",
-            field=models.CharField(
-                blank=True, max_length=128, null=True, verbose_name="비밀번호"
-            ),
+            field=models.CharField(blank=True, max_length=128, null=True, verbose_name="비밀번호"),
         ),
         migrations.AlterField(
             model_name="appuser",

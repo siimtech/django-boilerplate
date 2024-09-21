@@ -13,15 +13,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="appuser",
             name="real_name",
-            field=models.CharField(
-                blank=True, default=None, max_length=50, null=True, verbose_name="실명"
-            ),
+            field=models.CharField(blank=True, default=None, max_length=50, null=True, verbose_name="실명"),
         ),
         migrations.AlterField(
             model_name="appuser",
             name="phone_number",
-            field=models.CharField(
-                blank=True, max_length=20, unique=True, verbose_name="휴대폰 번호"
-            ),
+            field=models.CharField(blank=True, max_length=20, unique=True, verbose_name="휴대폰 번호"),
         ),
     ]

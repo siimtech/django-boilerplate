@@ -28,9 +28,7 @@ class Migration(migrations.Migration):
                 ("google_id", models.CharField(blank=True, max_length=255, null=True)),
                 (
                     "user",
-                    models.OneToOneField(
-                        on_delete=django.db.models.deletion.CASCADE, to="users.appuser"
-                    ),
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to="users.appuser"),
                 ),
             ],
         ),

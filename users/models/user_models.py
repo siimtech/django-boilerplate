@@ -45,18 +45,10 @@ class AppUser(AbstractBaseUser):
     email = models.EmailField(unique=True, null=True, blank=True, verbose_name="이메일")
     username = models.CharField(max_length=50, unique=True, verbose_name="유저네임")
     password = models.CharField(max_length=128, verbose_name="비밀번호")
-    real_name = models.CharField(
-        max_length=50, null=True, default=None, blank=True, verbose_name="실명"
-    )
-    phone_number = models.CharField(
-        max_length=20, unique=True, blank=True, verbose_name="휴대폰 번호"
-    )
-    is_phone_verified = models.BooleanField(
-        default=False, verbose_name="휴대폰 인증 여부"
-    )
-    profile_image = models.ImageField(
-        upload_to="media/profile/", null=True, blank=True, verbose_name="프로필 이미지"
-    )
+    real_name = models.CharField(max_length=50, null=True, default=None, blank=True, verbose_name="실명")
+    phone_number = models.CharField(max_length=20, unique=True, blank=True, verbose_name="휴대폰 번호")
+    is_phone_verified = models.BooleanField(default=False, verbose_name="휴대폰 인증 여부")
+    profile_image = models.ImageField(upload_to="media/profile/", null=True, blank=True, verbose_name="프로필 이미지")
     registered_at = models.DateTimeField(auto_now=True, verbose_name="가입일")
     is_active = models.BooleanField(default=True, verbose_name="활성화 여부")
     last_login = models.DateTimeField(auto_now=True, verbose_name="마지막 로그인")

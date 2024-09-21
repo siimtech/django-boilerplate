@@ -77,6 +77,9 @@ for directory in os.listdir(main_dir):
         ".git",
         "venv",
         "utils",
+        "run",
+        "logs",
+        "media",
     ]:
         INSTALLED_APPS.append(directory)
 
@@ -147,7 +150,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = "DENY"
 
 ROOT_URLCONF = "newproject.urls"
 
@@ -261,8 +264,8 @@ STORAGES = {
     },
 }
 
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 # AWS CLOUDWATCH LOGGING
 
@@ -328,6 +331,7 @@ UNFOLD = unfold_settings
 #         }
 #     )
 #     return context
+
 
 def environment_callback(request):
     """

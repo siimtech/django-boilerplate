@@ -58,9 +58,7 @@ def dashboard_callback(request: HttpRequest, context) -> Dict:
                 ],
             }
         ),
-        "options": json.dumps(
-            {"scales": {"x": {"stacked": True}, "y": {"stacked": True}}}
-        ),
+        "options": json.dumps({"scales": {"x": {"stacked": True}, "y": {"stacked": True}}}),
     }
 
     line_chart_data = {

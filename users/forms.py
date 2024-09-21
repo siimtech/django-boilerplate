@@ -16,9 +16,7 @@ class AppUserForm(forms.ModelForm):
                 message="50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.",
             ),
         ],
-        widget=UnfoldAdminTextInputWidget(
-            attrs={"placeholder": "50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다."}
-        ),
+        widget=UnfoldAdminTextInputWidget(attrs={"placeholder": "50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다."}),
         help_text="50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.",
         label="유저네임",
     )

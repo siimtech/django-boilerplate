@@ -7,6 +7,8 @@ from .models import AppUser
 from .serializers import AppUserSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 
 class AppUsersViewSet(ModelViewSet):
@@ -29,9 +31,16 @@ class AppUsersViewSet(ModelViewSet):
         except AppUser.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+
+@swagger_auto_schema(
+    method="post",
+    request_body=AppUserSerializer,
+    responses={201: openapi.Response("Created", AppUserSerializer), 400: "Bad Request"},
+)
 @api_view(["POST"])
 def register(request):
     if request.method == "POST":
