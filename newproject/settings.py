@@ -282,6 +282,8 @@ cloudwatch_logs_client = boto3.client(
     region_name=AWS_DEFAULT_REGION,
 )
 
+def get_stream_name():
+    return f"django-boilerplate-{timezone.now().date().strftime('%Y%m%d')}"
 
 def get_stream_name():
     return timezone.now().date().strftime("%Y%m%d")
@@ -289,7 +291,7 @@ def get_stream_name():
 
 cloudwatch_handler = watchtower.CloudWatchLogHandler(
     log_group="django-boilerplate",
-    stream_name=lambda: get_stream_name(),
+    stream_name=get_stream_name(),
     boto3_client=cloudwatch_logs_client,
 )
 
@@ -305,6 +307,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "watchtower.CloudWatchLogHandler",
             "log_group": "django-boilerplate",
+            'stream_name': get_stream_name(),
             "boto3_client": cloudwatch_logs_client,
         },
     },
