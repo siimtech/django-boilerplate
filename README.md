@@ -89,6 +89,26 @@ pip install black
 black .
 ```
 
+
+### ER Diagram
+
+Install and Generate ER Diagram using pydotplus:
+
+```python
+INSTALLED_APPS = [
+    # ... other installed apps in settings.py...
+    'django_extensions',
+]
+```
+
+```bash
+pip install django-extensions
+pip install pydotplus 
+
+python manage.py graph_models -a -g -o er_diagram.png
+```
+
+
 ## Security Best Practices
 
 ### Managing Environment Variables
