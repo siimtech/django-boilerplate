@@ -50,12 +50,15 @@ class AppUserForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         password = self.cleaned_data.get("password")
-        if user.id is None or not user.check_password(password):
+        if password and (user.id is None or not password.startswith("pbkdf2_sha256$")):
             user.set_password(password)
-            if commit:
-                user.save()
-        return user
 
+        user = super().save(commit=False)
+        
+        if commit:
+            user.save()
+        
+        return user
 
 class AdminUserForm(forms.ModelForm):
     class Meta:
@@ -63,10 +66,15 @@ class AdminUserForm(forms.ModelForm):
         fields = "__all__"
 
     def save(self, commit=True):
-        admin = super().save(commit=False)
+        admin = self.instance
         password = self.cleaned_data.get("password")
-        if admin.id is None or not admin.check_password(password):
+
+        if password and (admin.id is None or not password.startswith("pbkdf2_sha256$")):
             admin.set_password(password)
-            if commit:
-                admin.save()
+
+        admin = super().save(commit=False)
+        
+        if commit:
+            admin.save()
+        
         return admin
